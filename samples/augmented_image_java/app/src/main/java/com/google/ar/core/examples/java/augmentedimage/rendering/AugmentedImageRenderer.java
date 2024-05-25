@@ -16,11 +16,14 @@
 package com.google.ar.core.examples.java.augmentedimage.rendering;
 
 import android.content.Context;
+
 import com.google.ar.core.Anchor;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.Pose;
 import com.google.ar.core.examples.java.common.rendering.ObjectRenderer;
 import com.google.ar.core.examples.java.common.rendering.ObjectRenderer.BlendMode;
+import com.google.ar.core.examples.java.common.rendering.SquareRenderer;
+
 import java.io.IOException;
 
 /** Renders an augmented image. */
@@ -38,6 +41,7 @@ public class AugmentedImageRenderer {
   private final ObjectRenderer imageFrameUpperRight = new ObjectRenderer();
   private final ObjectRenderer imageFrameLowerLeft = new ObjectRenderer();
   private final ObjectRenderer imageFrameLowerRight = new ObjectRenderer();
+  private final SquareRenderer square = new SquareRenderer();
 
   public AugmentedImageRenderer() {}
 
@@ -62,6 +66,8 @@ public class AugmentedImageRenderer {
         context, "models/frame_lower_right.obj", "models/frame_base.png");
     imageFrameLowerRight.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
     imageFrameLowerRight.setBlendMode(BlendMode.AlphaBlending);
+
+    square.createOnGlThread(context);
   }
 
   public void draw(
@@ -116,6 +122,10 @@ public class AugmentedImageRenderer {
     worldBoundaryPoses[3].toMatrix(modelMatrix, 0);
     imageFrameLowerLeft.updateModelMatrix(modelMatrix, scaleFactor);
     imageFrameLowerLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+
+    centerAnchor.getPose().toMatrix(modelMatrix, 0);
+    square.updateModelMatrix(modelMatrix, 0.05f);
+    square.draw(viewMatrix, projectionMatrix);
   }
 
   private static float[] convertHexToColor(int colorHex) {

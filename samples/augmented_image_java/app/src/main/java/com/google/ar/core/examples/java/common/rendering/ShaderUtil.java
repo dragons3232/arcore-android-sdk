@@ -43,6 +43,7 @@ public final class ShaderUtil {
 
     // Prepend any #define values specified during this run.
     String defines = "";
+    if(defineValuesMap != null && defineValuesMap.size() > 0)
     for (Map.Entry<String, Integer> entry : defineValuesMap.entrySet()) {
       defines += "#define " + entry.getKey() + " " + entry.getValue() + "\n";
     }
