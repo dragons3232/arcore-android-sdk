@@ -20,6 +20,7 @@ class TextureFlag() {
 
     private var program = 0;
     private var textureUniform = 0
+    private var textCoordAttr = 0
     private var modelViewProjectionUniform = 0
 
     private val modelMatrix = FloatArray(16)
@@ -104,6 +105,7 @@ class TextureFlag() {
         // Get access to projection matrix. Must call after linking program
         modelViewProjectionUniform = GLES20.glGetUniformLocation(programObject, "uMVPMatrix");
         textureUniform = GLES20.glGetUniformLocation(programObject, "uTexture")
+        textCoordAttr = GLES20.glGetUniformLocation(programObject, "uTexture")
 
         // Check the link status
         GLES20.glGetProgramiv(programObject, GLES20.GL_LINK_STATUS, linked, 0)
@@ -177,6 +179,10 @@ class TextureFlag() {
 
         GLES20.glVertexAttribPointer(0, 3, GLES20.GL_FLOAT, false, 0, squareBuffer)
         GLES20.glEnableVertexAttribArray(0);
+
+        GLES20.glVertexAttribPointer(textCoordAttr, 2, GLES20.GL_FLOAT, false, 0, textureBuffer)
+        GLES20.glEnableVertexAttribArray(textCoordAttr);
+
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, squareVertices.size / 3);
 
         GLES20.glDisableVertexAttribArray(textureUniform);

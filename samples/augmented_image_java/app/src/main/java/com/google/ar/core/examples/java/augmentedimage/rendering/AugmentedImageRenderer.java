@@ -110,28 +110,28 @@ public class AugmentedImageRenderer {
     float scaleFactor = 1.0f;
     float[] modelMatrix = new float[16];
 
-//    worldBoundaryPoses[0].toMatrix(modelMatrix, 0);
-//    imageFrameUpperLeft.updateModelMatrix(modelMatrix, scaleFactor);
-//    imageFrameUpperLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
-//
-//    worldBoundaryPoses[1].toMatrix(modelMatrix, 0);
-//    imageFrameUpperRight.updateModelMatrix(modelMatrix, scaleFactor);
-//    imageFrameUpperRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
-//
-//    worldBoundaryPoses[2].toMatrix(modelMatrix, 0);
-//    imageFrameLowerRight.updateModelMatrix(modelMatrix, scaleFactor);
-//    imageFrameLowerRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
-//
-//    worldBoundaryPoses[3].toMatrix(modelMatrix, 0);
-//    imageFrameLowerLeft.updateModelMatrix(modelMatrix, scaleFactor);
-//    imageFrameLowerLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+    worldBoundaryPoses[0].toMatrix(modelMatrix, 0);
+    imageFrameUpperLeft.updateModelMatrix(modelMatrix, scaleFactor);
+    imageFrameUpperLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+
+    worldBoundaryPoses[1].toMatrix(modelMatrix, 0);
+    imageFrameUpperRight.updateModelMatrix(modelMatrix, scaleFactor);
+    imageFrameUpperRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+
+    worldBoundaryPoses[2].toMatrix(modelMatrix, 0);
+    imageFrameLowerRight.updateModelMatrix(modelMatrix, scaleFactor);
+    imageFrameLowerRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+
+    worldBoundaryPoses[3].toMatrix(modelMatrix, 0);
+    imageFrameLowerLeft.updateModelMatrix(modelMatrix, scaleFactor);
+    imageFrameLowerLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
 
 //    centerAnchor.getPose().toMatrix(modelMatrix, 0);
 //    square.updateModelMatrix(modelMatrix, 0.05f);
 //    square.draw(viewMatrix, projectionMatrix);
 
     centerAnchor.getPose().toMatrix(modelMatrix, 0);
-    flag.updateModelMatrix(modelMatrix, 0.05f);
+    flag.updateModelMatrix(modelMatrix, 0.02f);
     flag.draw(viewMatrix, projectionMatrix);
   }
 
