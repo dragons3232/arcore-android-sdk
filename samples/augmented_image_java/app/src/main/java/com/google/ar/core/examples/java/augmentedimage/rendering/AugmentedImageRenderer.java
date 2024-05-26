@@ -23,6 +23,7 @@ import com.google.ar.core.Pose;
 import com.google.ar.core.examples.java.common.rendering.ObjectRenderer;
 import com.google.ar.core.examples.java.common.rendering.ObjectRenderer.BlendMode;
 import com.google.ar.core.examples.java.common.rendering.SquareRenderer;
+import com.google.ar.core.examples.java.common.rendering.TextureFlag;
 
 import java.io.IOException;
 
@@ -42,6 +43,7 @@ public class AugmentedImageRenderer {
   private final ObjectRenderer imageFrameLowerLeft = new ObjectRenderer();
   private final ObjectRenderer imageFrameLowerRight = new ObjectRenderer();
   private final SquareRenderer square = new SquareRenderer();
+  private final TextureFlag flag = new TextureFlag();
 
   public AugmentedImageRenderer() {}
 
@@ -68,6 +70,7 @@ public class AugmentedImageRenderer {
     imageFrameLowerRight.setBlendMode(BlendMode.AlphaBlending);
 
     square.createOnGlThread(context);
+    flag.createOnGlThread(context);
   }
 
   public void draw(
@@ -107,25 +110,29 @@ public class AugmentedImageRenderer {
     float scaleFactor = 1.0f;
     float[] modelMatrix = new float[16];
 
-    worldBoundaryPoses[0].toMatrix(modelMatrix, 0);
-    imageFrameUpperLeft.updateModelMatrix(modelMatrix, scaleFactor);
-    imageFrameUpperLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+//    worldBoundaryPoses[0].toMatrix(modelMatrix, 0);
+//    imageFrameUpperLeft.updateModelMatrix(modelMatrix, scaleFactor);
+//    imageFrameUpperLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+//
+//    worldBoundaryPoses[1].toMatrix(modelMatrix, 0);
+//    imageFrameUpperRight.updateModelMatrix(modelMatrix, scaleFactor);
+//    imageFrameUpperRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+//
+//    worldBoundaryPoses[2].toMatrix(modelMatrix, 0);
+//    imageFrameLowerRight.updateModelMatrix(modelMatrix, scaleFactor);
+//    imageFrameLowerRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+//
+//    worldBoundaryPoses[3].toMatrix(modelMatrix, 0);
+//    imageFrameLowerLeft.updateModelMatrix(modelMatrix, scaleFactor);
+//    imageFrameLowerLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
 
-    worldBoundaryPoses[1].toMatrix(modelMatrix, 0);
-    imageFrameUpperRight.updateModelMatrix(modelMatrix, scaleFactor);
-    imageFrameUpperRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
-
-    worldBoundaryPoses[2].toMatrix(modelMatrix, 0);
-    imageFrameLowerRight.updateModelMatrix(modelMatrix, scaleFactor);
-    imageFrameLowerRight.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
-
-    worldBoundaryPoses[3].toMatrix(modelMatrix, 0);
-    imageFrameLowerLeft.updateModelMatrix(modelMatrix, scaleFactor);
-    imageFrameLowerLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+//    centerAnchor.getPose().toMatrix(modelMatrix, 0);
+//    square.updateModelMatrix(modelMatrix, 0.05f);
+//    square.draw(viewMatrix, projectionMatrix);
 
     centerAnchor.getPose().toMatrix(modelMatrix, 0);
-    square.updateModelMatrix(modelMatrix, 0.05f);
-    square.draw(viewMatrix, projectionMatrix);
+    flag.updateModelMatrix(modelMatrix, 0.05f);
+    flag.draw(viewMatrix, projectionMatrix);
   }
 
   private static float[] convertHexToColor(int colorHex) {
