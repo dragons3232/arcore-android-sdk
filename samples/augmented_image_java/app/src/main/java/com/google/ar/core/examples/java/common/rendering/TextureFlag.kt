@@ -158,7 +158,7 @@ class TextureFlag() {
         cameraPerspective: FloatArray
     ) {
         // Build the ModelView and ModelViewProjection matrices
-        Matrix.rotateM(modelMatrix, 0, 90f, 1f, 0f, 0f)
+        Matrix.rotateM(modelMatrix, 0, 270f, 1f, 0f, 0f)
 
         Matrix.multiplyMM(modelViewMatrix, 0, cameraView, 0, modelMatrix, 0)
         Matrix.multiplyMM(modelViewProjectionMatrix, 0, cameraPerspective, 0, modelViewMatrix, 0)
